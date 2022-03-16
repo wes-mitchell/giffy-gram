@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "name": "Bryan",
+      "email": "bryan@bn.com",
+      "id": 1
+    },
+    {
+      "name": "Wes",
+      "email": "wes@wes.com",
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "id": 2,
+      "imageURL": "https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif",
+      "userId": 2,
+      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "timestamp": 1561695022812,
+      "title": "Enhanced global utilisation"
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/uKWE6qMrVOEEg/giphy.gif",
+      "userId": 2,
+      "description": "Animal doing his thang",
+      "timestamp": 1561695022812,
+      "title": "Animal Drumming",
+      "id": 4
+    },
+    {
+      "imageURL": "https://media.giphy.com/media/x8WHr4InW2LU4/giphy.gif",
+      "userId": 2,
+      "description": "Mikey eating pizza",
+      "timestamp": 1561695022812,
+      "title": "Get some Za!",
+      "id": 5
+    }
+  ],
+  "messages": [],
+  "likes": [
+    {
+      "id": 1,
+      "userId": 2,
+      "postId": 2
+    }
+  ]
+}
