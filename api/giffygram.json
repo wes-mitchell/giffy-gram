@@ -35,6 +35,20 @@
       "timestamp": 1561695022812,
       "title": "Get some Za!",
       "id": 5
+    },
+    {
+      "title": "Ghostbustin",
+      "imageURL": "https://media.giphy.com/media/5rlkqJ8qbSiqI/giphy.gif",
+      "description": "Don't cross the streams",
+      "timestamp": 1647543442931,
+      "id": 6
+    },
+    {
+      "title": "Slimer",
+      "imageURL": "https://media.giphy.com/media/TYKOdOASPBVjW/giphy.gif",
+      "description": "Slimer is always fun. ",
+      "timestamp": 1647544591311,
+      "id": 7
     }
   ],
   "messages": [],

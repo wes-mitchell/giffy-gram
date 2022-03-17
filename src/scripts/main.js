@@ -9,10 +9,11 @@
     2. Are you defining the function here or invoking it?
 */
 
-import { getPosts, getUsers } from "./data/DataManager.js"
+import { getLoggedInUser, getPosts, getUsers, createPost } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { footer } from "./footer/footer.js"
+import { PostEntry } from "./feed/PostEntry.js";
 
 const showPostList = () => {
 	//Get a reference to the location on the DOM where the list will display
@@ -33,11 +34,18 @@ const showFooter = () => {
   footEl.innerHTML = footer()
  }
 
+ const showPostEntry = () => { 
+  //Get a reference to the location on the DOM where the nav will display
+  const entryElement = document.querySelector(".entryForm");
+  entryElement.innerHTML = PostEntry();
+}
+
 
 const startGiffyGram = () => {
 	showPostList();
   showNavBar()
   showFooter()
+  showPostEntry()
 }
 
 startGiffyGram();
@@ -73,14 +81,54 @@ applicationElement.addEventListener("click", event => {
 applicationElement.addEventListener("click", event => {
   if (event.target.id.startsWith("edit")) {
     alert("what you tryn to change?")
-    console.log(`the id is ${event.target.id.split('--')[1]}`)
+    console.log("post clicked", event.target.id.split('--'))
+    console.log("the id is", event.target.id.split('--')[1])
+  }
+})
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "newPost__cancel") {
+      //clear the input fields
   }
 })
 
+const clearEntry = () => {  
+document.querySelector("input[name='postTitle']").value = ''
+document.querySelector("input[name='postURL']").value = ''
+document.querySelector("textarea[name='postDescription']").value = ''
+}
+
+applicationElement.addEventListener("click", event => {
+  event.preventDefault();
+  if (event.target.id === "newPost__submit") {
+  //collect the input values into an object to post to the DB
+    const title = document.querySelector("input[name='postTitle']").value
+    const url = document.querySelector("input[name='postURL']").value
+    const description = document.querySelector("textarea[name='postDescription']").value
+    //we have not created a user yet - for now, we will hard code `1`.
+    //we can add the current time as well
+    const postObject = {
+        title: title,
+        imageURL: url,
+        description: description,
+        userId: getLoggedInUser.id,
+        timestamp: Date.now()
+    }
+      createPost(postObject)
+      .then(showPostList)
+      clearEntry()
+  }
+})
+
+// const clear
 // applicationElement.addEventListener("click", event => {
-//   let header = document.querySelector(".title")
-//    if (event.target.id === "title") {
-//      header.innerHTML = header.replace("what happened")
+//   const title = document.querySelector("input[name='postTitle']")
+//   const url = document.querySelector("input[name='postURL']")
+//   const description = document.querySelector("textarea[name='postDescription']")
+//   event.preventDefault()
+//   if (event.target.id === "newPost__submit") {
+//     showPostList()
+//     title.value = ''
+//     url.value = ''
+//     description.value = ''
 //   }
-//   return header
 // })
