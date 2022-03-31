@@ -1,3 +1,4 @@
+import { getLoggedInUser } from "../data/DataManager.js";
 import { Post } from "./Post.js";
 
 export const PostList = (allPosts) => {

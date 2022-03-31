@@ -9,17 +9,24 @@
       "name": "Wes",
       "email": "wes@wes.com",
       "id": 2
+    },
+    {
+      "name": "Wes Mantooth",
+      "email": "wes@mantooth.com",
+      "id": 3
+    },
+    {
+      "name": "john",
+      "email": "john@jordan.com",
+      "id": 4
+    },
+    {
+      "name": "Cookie Monster",
+      "email": "cookie@monster.com",
+      "id": 5
     }
   ],
   "posts": [
-    {
-      "id": 2,
-      "imageURL": "https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif",
-      "userId": 2,
-      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-      "timestamp": 1561695022812,
-      "title": "Enhanced global utilisation"
-    },
     {
       "imageURL": "https://media.giphy.com/media/uKWE6qMrVOEEg/giphy.gif",
       "userId": 2,
@@ -38,6 +45,7 @@
     },
     {
       "title": "Ghostbustin",
+      "userId": 2,
       "imageURL": "https://media.giphy.com/media/5rlkqJ8qbSiqI/giphy.gif",
       "description": "Don't cross the streams",
       "timestamp": 1647543442931,
@@ -45,6 +53,7 @@
     },
     {
       "title": "Slimer",
+      "userId": 2,
       "imageURL": "https://media.giphy.com/media/TYKOdOASPBVjW/giphy.gif",
       "description": "Slimer is always fun. ",
       "timestamp": 1647544591311,
@@ -52,25 +61,47 @@
     },
     {
       "title": "Bonzo",
+      "userId": 2,
       "imageURL": "https://media.giphy.com/media/KxCbwjYF3GB4Q/giphy.gif",
-      "description": "Bonham preachin'",
+      "description": "Bonham preachin",
       "timestamp": 1647613715029,
       "id": 8
     },
     {
       "title": "Sad Times",
+      "userId": 1,
       "imageURL": "https://media.giphy.com/media/VhWCQ91Sm5S8Ee41nR/giphy-downsized-large.gif",
-      "description": "Life's rough sometimes for Saul Goodman. ",
+      "description": "Life's rough sometimes for Saul Goodman.",
       "timestamp": 1648498248733,
       "id": 9
+    },
+    {
+      "title": "Damn Dude",
+      "userId": 3,
+      "imageURL": "https://media.giphy.com/media/Qw5jac4hmEsY8/giphy.gif",
+      "description": "Gettin it. ",
+      "timestamp": 1648671078894,
+      "id": 10
+    },
+    {
+      "title": "Yeh boi",
+      "imageURL": "https://media.giphy.com/media/zbIaWXjbojHiqNcAGu/giphy.gif",
+      "description": "Nice",
+      "userId": 4,
+      "timestamp": 1648671264992,
+      "id": 11
+    },
+    {
+      "title": "Cookie Monstuh",
+      "imageURL": "https://media.giphy.com/media/EKUvB9uFnm2Xe/giphy.gif",
+      "description": "I'm the Cookie Monsta baby!",
+      "userId": 5,
+      "timestamp": 1648672812392,
+      "id": 12
     }
   ],
   "messages": [],
   "likes": [
-    {
-      "id": 1,
-      "userId": 2,
-      "postId": 2
-    }
+    {}
   ]
 }

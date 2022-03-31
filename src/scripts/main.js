@@ -9,12 +9,16 @@
     2. Are you defining the function here or invoking it?
 */
 
-import { getLoggedInUser, getPosts, getUsers, createPost, usePostCollection, deletePost, updatePost, getSinglePost } from "./data/DataManager.js"
+import { getLoggedInUser, getPosts, getUsers, createPost, usePostCollection, 
+          deletePost, updatePost, getSinglePost, logoutUser, 
+          setLoggedInUser, loginUser, registerUser, getLoggedUsersPosts } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { footer } from "./footer/footer.js"
 import { PostEntry } from "./feed/PostEntry.js";
 import { PostEdit } from "./feed/PostEdit.js";
+import { LoginForm } from "./auth/LoginForm.js";
+import { RegisterForm } from "./auth/RegisterForm.js";
 
 const postElement = document.querySelector(".postList")
 const yearSelected = document.querySelector("#yearSelection")
@@ -45,6 +49,23 @@ const showFooter = () => {
   entryElement.innerHTML = PostEntry();
 }
 
+const checkForUser = () => { 
+  if (sessionStorage.getItem("user")) {
+    setLoggedInUser(JSON.parse(sessionStorage.getItem('user')));
+    startGiffyGram();
+  } else {
+    showLoginRegister()
+  }
+ }
+
+ const showLoginRegister = () => {
+   showNavBar()
+   const entryElement = document.querySelector(".entryForm")
+   entryElement.innerHTML = `${LoginForm()} <hr> ${RegisterForm()}`
+   const postElement = document.querySelector(".postList")
+   postElement.innerHTML = ''
+ }
+
 
 const startGiffyGram = () => {
 	showPostList();
@@ -53,13 +74,14 @@ const startGiffyGram = () => {
   showPostEntry()
 }
 
-startGiffyGram();
+checkForUser()
 
 const applicationElement = document.querySelector(".giffygram");
 
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "logout"){
-		console.log("You clicked on logout")
+	sessionStorage.clear();
+  checkForUser();
 	}
 })
 
@@ -75,17 +97,26 @@ applicationElement.addEventListener("click", event => {
   }
 })
 
-// applicationElement.addEventListener("click", event => {
-//   if (event.target.id.startsWith("edit")) {
-//     alert("what you tryn to change?")
-//     console.log("post clicked", event.target.id.split('--'))
-//     console.log("the id is", event.target.id.split('--')[1])
-//   }
-// })
-
 applicationElement.addEventListener("click", event => {
   if (event.target.id === "newPost__cancel") {
       //clear the input fields
+  }
+})
+
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "logout") {
+    logoutUser();
+    console.log(getLoggedInUser());
+  }
+})
+
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "myposts") {
+    console.log("tight");
+    const currentUser = getLoggedInUser()
+    getLoggedUsersPosts(currentUser).then(response => {
+    postElement.innerHTML = PostList(response)
+  })
   }
 })
 
@@ -108,7 +139,7 @@ applicationElement.addEventListener("click", event => {
         title: title,
         imageURL: url,
         description: description,
-        userId: getLoggedInUser.id,
+        userId: getLoggedInUser().id,
         timestamp: Date.now()
     }
       createPost(postObject)
@@ -116,7 +147,6 @@ applicationElement.addEventListener("click", event => {
       clearEntry()
   }
 })
-
 
 const showFilteredPosts = (year) => {
   //get a copy of the post collection
@@ -202,3 +232,39 @@ applicationElement.addEventListener("click", event => {
     showPostEntry()
   }
 })
+
+applicationElement.addEventListener("click", event => {
+  // event.preventDefault();
+  if (event.target.id === "login__submit") {
+    const userObject = {
+        name: document.querySelector("input[name='name']").value,
+        email: document.querySelector("input[name='email']").value
+    }
+    loginUser(userObject)
+    .then(dbUserObj => {
+      if (dbUserObj) {
+      sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+      startGiffyGram();
+      } else {
+        const entryElement = document.querySelector(".entryForm")
+        entryElement.innerHTML = `<p class="center">That user doesn't exist dawg!!! Try again or register for that free account we offered up. &#129335</p> ${LoginForm()} <hr> ${RegisterForm()}`
+      }
+    })
+  }
+})
+
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "register__submit") {
+    const userObj = {
+      name: document.querySelector("input[name='registerName']").value,
+      email: document.querySelector("input[name='registerEmail']").value
+    }
+    registerUser(userObj)
+    .then(dbUserObj => {
+      sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+      startGiffyGram()
+    })
+  }
+})
+
+
