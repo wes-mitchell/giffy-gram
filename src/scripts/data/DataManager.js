@@ -117,7 +117,7 @@ export const loginUser = (userObj) => {
   }
 
   export const getLoggedUsersPosts = (userObj) => { 
-    return fetch(`http://localhost:8088/posts?userId=${userObj.id}&_expand=user`)
+    return fetch(`http://localhost:8088/posts?userId=${userObj.id}&_expand=user&_sort=timestamp&_order=desc`)
     .then(response => response.json())
     .then(userposts => {
       console.log(userposts);

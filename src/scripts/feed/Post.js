@@ -14,6 +14,7 @@
         <p class="user">Posted by: <b>${postObject.user.name}</b></p>
         <div><button id="edit--${postObject.id}">Edit</button>
         <button id="delete--${postObject.id}">Delete</button>
+        <p>&#128077</p>
         </div>
         </div>
       </section>

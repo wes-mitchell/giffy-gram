@@ -98,6 +98,14 @@
       "userId": 5,
       "timestamp": 1648672812392,
       "id": 12
+    },
+    {
+      "title": "Got some Tremors",
+      "imageURL": "https://media.giphy.com/media/H5HHtWUGqwEH7mumQL/giphy.gif",
+      "description": "Whoof",
+      "userId": 2,
+      "timestamp": 1648737092302,
+      "id": 13
     }
   ],
   "messages": [],
